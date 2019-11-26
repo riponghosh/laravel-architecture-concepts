@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Http\Controllers\Auth\TestClass;
 use App\Http\Controllers\Auth\TestClass2;
 use App\Http\Controllers\Auth\TestClass3;
+use Illuminate\Support\Str;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,6 +17,25 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     { 
+        // different bind and singleton
+        $this->app->bind('rand1', function () {
+            return Str::random(5);
+        });
+        echo app('rand1');
+        echo "<br>";
+        echo app('rand1');
+        echo "<br>";
+
+        $this->app->singleton('rand2', function () {
+            return Str::random(5);
+        });
+        echo app('rand2');
+        echo "<br>";
+        echo app('rand2');
+        echo "<br>";
+
+        // example of tagging
+
         $this->app->bind('class1', function () {
             return new TestClass3();
         });
