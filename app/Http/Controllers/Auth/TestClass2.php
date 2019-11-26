@@ -15,4 +15,8 @@ class TestClass2
 	public function test(){
 		echo "Hello test2 <br>";
 	}
+
+	public function isAdmin(){
+		return true;
+	}
 }

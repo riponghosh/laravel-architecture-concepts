@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Http\Controllers\Auth\TestClass;
 use App\Http\Controllers\Auth\TestClass2;
 use App\Http\Controllers\Auth\TestClass3;
+use App\Http\Controllers\Auth\TestClass4;
 use Illuminate\Support\Str;
 
 class AppServiceProvider extends ServiceProvider
@@ -56,6 +57,13 @@ class AppServiceProvider extends ServiceProvider
         foreach ($data as $data) {
             $data->test();
         }
+
+        // Extending Bindings
+
+        $this->app->extend(TestClass2::class, function ($service, $app) {
+            return new TestClass4($service);
+        });
+        app(TestClass2::class)->user();
     }
 
     /**
