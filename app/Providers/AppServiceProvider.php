@@ -64,6 +64,14 @@ class AppServiceProvider extends ServiceProvider
             return new TestClass4($service);
         });
         app(TestClass2::class)->user();
+
+        // Container Events
+
+        $this->app->resolving(function ($object, $app) {
+            echo "resolving object ".get_class($object)." <br>" ; 
+            // dd(get_class($object));
+            // print_r($object);
+        });
     }
 
     /**
