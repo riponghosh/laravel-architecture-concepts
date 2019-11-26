@@ -32,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
         });
     
         // $data=app()->tagged('all');
-        $data=resolve('allClass');
+        $data=resolve('allClass');//app('allClass') or $this->app->make('allClass')
         foreach ($data as $data) {
             $data->test();
         }
